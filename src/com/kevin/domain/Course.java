@@ -2,59 +2,26 @@ package com.kevin.domain;
 
 import java.util.Objects;
 
-public class Course {
-	private static int currentId;
-	
-	
-	private Integer id;
-	private String title;
-	private String description;
-	private int timeToComplete;
-	
-	
+public class Course extends Content {
+
+	private final int timeToComplete;
+
 	public Course(String title, String description, int timeToComplete) {
-		super();
-		this.id = currentId++;
-		this.title = title;
-		this.description = description;
+		super(title, description);
 		this.timeToComplete = timeToComplete;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public double calcXP() {
+		return Content.STANDARD_COURSE_XP;
 	}
 
 	public int getTimeToComplete() {
 		return timeToComplete;
 	}
 
-	public void setTimeToComplete(int timeToComplete) {
-		this.timeToComplete = timeToComplete;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(this.getId());
 	}
 
 	@Override
@@ -66,12 +33,12 @@ public class Course {
 		if (getClass() != obj.getClass())
 			return false;
 		Course other = (Course) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(this.getId(), other.getId());
 	}
 
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", title=" + title + ", description=" + description + ", timeToComplete="
-				+ timeToComplete + "]";
+		return "\nCourse [id=" + this.getId() + ", title=" + this.getTitle() + ", description=" + this.getDescription()
+				+ ", timeToComplete=" + this.getTimeToComplete() + "]";
 	}
 }

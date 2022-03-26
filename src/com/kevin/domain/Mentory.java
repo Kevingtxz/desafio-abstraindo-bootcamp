@@ -3,46 +3,17 @@ package com.kevin.domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Mentory {
-	private static int currentId;
-	
-	
-	private Integer id;
-	private String title;
-	private String description;
+public class Mentory extends Content {
+
 	private LocalDate date;
-	
 
 	public Mentory(String title, String description, LocalDate date) {
-		super();
-		this.id = currentId++;
-		this.title = title;
-		this.description = description;
+		super(title, description);
 		this.date = date;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public double calcXP() {
+		return Content.STANDARD_MENTORY_XP;
 	}
 
 	public LocalDate getDate() {
@@ -55,7 +26,7 @@ public class Mentory {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(this.getId());
 	}
 
 	@Override
@@ -67,11 +38,12 @@ public class Mentory {
 		if (getClass() != obj.getClass())
 			return false;
 		Mentory other = (Mentory) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(this.getId(), other.getId());
 	}
 
 	@Override
 	public String toString() {
-		return "Mentoring [id=" + id + ", title=" + title + ", description=" + description + ", date=" + date + "]";
+		return "\nMentoring [id=" + this.getId() + ", title=" + this.getTitle() + ", description="
+				+ this.getDescription() + ", date=" + this.getDate() + "]";
 	}
 }
